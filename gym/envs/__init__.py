@@ -211,6 +211,13 @@ register(
 )
 
 register(
+    id='ReacherMIL-v1',
+    entry_point='gym.envs.mujoco:ReacherMILEnv',
+    max_episode_steps=50,
+    reward_threshold=-0.05,
+)
+
+register(
     id='Pusher-v0',
     entry_point='gym.envs.mujoco:PusherEnv',
     max_episode_steps=100,

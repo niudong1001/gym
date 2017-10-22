@@ -392,6 +392,13 @@ add_task(
 )
 
 add_task(
+    id='ReacherMIL-v1',
+    summary="Make a 2D robot reach to a randomly located color block amid distractors for \
+            1650 randomly sampled colors.",
+    group='mujoco',
+)
+
+add_task(
     id='HalfCheetah-v1',
     summary="Make a 2D cheetah robot run.",
     group='mujoco',
