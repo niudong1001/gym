@@ -7,12 +7,20 @@ import glob
 import os
 from natsort import natsorted
 from gym.envs.mujoco import mujoco_env
+try:
+    import mujoco_py
+    from mujoco_py.mjlib import mjlib
+except ImportError as e:
+    raise error.DependencyNotInstalled("{}. (HINT: you need to install mujoco_py, and also perform the setup instructions here: https://github.com/openai/mujoco-py/.)".format(e))
 
 class ReacherMILEnv(mujoco_env.MujocoEnv, utils.EzPickle):
-    def __init__(self):
+    def __init__(self, train=True):
         gc.enable() # automatic garbage collection
         utils.EzPickle.__init__(self)
-        self.xml_paths = natsorted(glob.glob(os.path.join(os.path.dirname(__file__), "assets/sim_vision_reach_test_xmls/*")))
+        if not train:
+            self.xml_paths = natsorted(glob.glob(os.path.join(os.path.dirname(__file__), "assets/sim_vision_reach_test_xmls/*")))
+        else:
+            self.xml_paths = natsorted(glob.glob(os.path.join(os.path.dirname(__file__), "assets/sim_vision_reach_train_xmls/*")))
         self.xml_iter = iter(self.xml_paths)
         self.n_distractors = 2 #2
         mujoco_env.MujocoEnv.__init__(self, self.xml_iter.next(), 5)
@@ -32,14 +40,23 @@ class ReacherMILEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         ob = self._get_obs()
         done = False
         return ob, reward, done, dict(reward_dist=reward_dist, reward_ctrl=reward_ctrl)
+        
+    def _get_viewer(self):
+        if self.viewer is None:
+            self.viewer = mujoco_py.MjViewer(init_width=640, init_height=480)
+            self.viewer.start()
+            self.viewer.set_model(self.model)
+            self.viewer_setup()
+        return self.viewer
 
     def viewer_setup(self):
         self.viewer.cam.trackbodyid = 0
         self.viewer.cam.lookat[0] = 0.
         self.viewer.cam.lookat[1] = 0.
         self.viewer.cam.lookat[2] = 0.
-        self.viewer.cam.distance = 1.0#1.3
-        self.viewer.cam.elevation = -90 #-90
+        self.viewer.cam.distance = 0.8
+        self.viewer.cam.elevation = 90 #-90
+        self.viewer.cam.azimuth = 90
 
     def reset_model(self):
         # qpos = self.init_qpos
@@ -83,5 +100,8 @@ class ReacherMILEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             self.model.data.qpos.flat[:2],
             self.model.data.qvel.flat[:2],
             self.get_body_com("fingertip"),
-            self.eept_vel
+            self.get_body_com("target"),
+            self.eept_vel,
+            np.zeros_like(self.eept_vel)
         ])
+    

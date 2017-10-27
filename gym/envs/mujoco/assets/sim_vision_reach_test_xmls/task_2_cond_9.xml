@@ -14,19 +14,17 @@
 				<joint limited="true" name="joint1" pos="0 0 0" range="-3.0 3.0" type="hinge" axis="0 0 1"/>
 				<geom name="link1" type="capsule" fromto="0 0 0 0.1 0 0" rgba="0.0 0.4 0.6 1.0" size=".01"/>
 				<body name="fingertip" pos="0.11 0 0">
-					<site pos="0 0 0" name="fingertip" size="0.01"/>
 					<geom name="fingertip" pos="0 0 0" contype="0" rgba="0 1 0 1" type="sphere" size=".01"/>
 				</body>
 			</body>
 		</body>
-		<body name="target" pos="0.081235298972 0.0929229202129 0.01">
+		<body name="target" pos="-0.037491710851 0.0516747629912 0.01">
 			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.25 0.15 0.05 1.0" type="box" size="0.03 0.03 0.03"/>
-			<site pos="0 0 0" name="target" size="0.01"/>
 		</body>
-		<body name="cube_0" pos="-0.171647131612 0.176430150726 0.01">
+		<body name="cube_0" pos="0.130589230866 -0.186757207599 0.01">
 			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.25 0.05 0.45 1.0" type="box" size="0.03 0.03 0.03"/>
 		</body>
-		<body name="cube_1" pos="0.0989487324524 -0.124301459357 0.01">
+		<body name="cube_1" pos="0.172506235685 0.0600829936127 0.01">
 			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.65 0.65 0.85 1.0" type="box" size="0.03 0.03 0.03"/>
 		</body>
 	</worldbody>

@@ -14,20 +14,18 @@
 				<joint limited="true" name="joint1" pos="0 0 0" range="-3.0 3.0" type="hinge" axis="0 0 1"/>
 				<geom name="link1" type="capsule" fromto="0 0 0 0.1 0 0" rgba="0.0 0.4 0.6 1.0" size=".01"/>
 				<body name="fingertip" pos="0.11 0 0">
-					<site pos="0 0 0" name="fingertip" size="0.01"/>
 					<geom name="fingertip" pos="0 0 0" contype="0" rgba="0 1 0 1" type="sphere" size=".01"/>
 				</body>
 			</body>
 		</body>
-		<body name="target" pos="0.024964210903 0.165980007134 0.01">
-			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.35 0.95 0.05 1.0" type="box" size="0.03 0.03 0.03"/>
-			<site pos="0 0 0" name="target" size="0.01"/>
+		<body name="target" pos="-0.00620621787156 0.194213426576 0.01">
+			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.45 0.85 0.85 1.0" type="box" size="0.03 0.03 0.03"/>
 		</body>
-		<body name="cube_0" pos="0.0617854035549 0.0830182853068 0.01">
-			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.15 0.15 0.85 1.0" type="box" size="0.03 0.03 0.03"/>
+		<body name="cube_0" pos="-0.197120313879 -0.0254471643804 0.01">
+			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.95 0.05 0.85 1.0" type="box" size="0.03 0.03 0.03"/>
 		</body>
-		<body name="cube_1" pos="-0.191148327233 0.0545577199774 0.01">
-			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.95 0.65 0.95 1.0" type="box" size="0.03 0.03 0.03"/>
+		<body name="cube_1" pos="0.191980279703 -0.166816673752 0.01">
+			<geom conaffinity="0" density="0.00001" contype="0" rgba="0.35 0.15 0.85 1.0" type="box" size="0.03 0.03 0.03"/>
 		</body>
 	</worldbody>
 	<actuator >
