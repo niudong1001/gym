@@ -21,6 +21,7 @@ class ReacherMILEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             self.xml_paths = natsorted(glob.glob(os.path.join(os.path.dirname(__file__), "assets/sim_vision_reach_test_xmls/*")))
         else:
             self.xml_paths = natsorted(glob.glob(os.path.join(os.path.dirname(__file__), "assets/sim_vision_reach_train_xmls/*")))
+            # self.xml_paths = natsorted(glob.glob(os.path.join(os.path.dirname(__file__), "assets/sim_vision_reach_train_xmls/task_1649*")))
         self.xml_iter = iter(self.xml_paths)
         self.n_distractors = 2 #2
         mujoco_env.MujocoEnv.__init__(self, self.xml_iter.next(), 5)
