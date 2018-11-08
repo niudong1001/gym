@@ -78,9 +78,12 @@ class MujocoEnv(gym.Env):
 
     # -----------------------------
 
-    def reset(self):
-        self.sim.reset()
+    def _reset(self):
+        # mjlib.mj_resetData(self.model.ptr, self.data.ptr)
         ob = self.reset_model()
+        # if self.viewer is not None:
+        #     self.viewer.autoscale()
+        #     self.viewer_setup()
         return ob
 
     def set_state(self, qpos, qvel):
@@ -140,6 +143,6 @@ class MujocoEnv(gym.Env):
 
     def state_vector(self):
         return np.concatenate([
-            self.sim.data.qpos.flat,
-            self.sim.data.qvel.flat
+            self.model.data.qpos.flat,
+            self.model.data.qvel.flat
         ])
